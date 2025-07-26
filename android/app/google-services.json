@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "428070339741",
+    "project_id": "recogenie-18f45",
+    "storage_bucket": "recogenie-18f45.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428070339741:android:ffc0c53191ff3a4a0b4074",
+        "android_client_info": {
+          "package_name": "com.example.recogenie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbehGFZKiL_sdQc92sp0bw1t93igdkK00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

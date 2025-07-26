@@ -1,6 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(url: 'https://kkllntsdctvnypiezmfz.supabase.co', anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtrbGxudHNkY3R2bnlwaWV6bWZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM1NTYwMTQsImV4cCI6MjA2OTEzMjAxNH0.omWRI8KqG72LELRJkCu-QOr8C7QqpeN2qcUbiYk-3HI');
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -10,24 +18,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
+
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -69,12 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
+
+    signUp('omar@gmail.com','1234567');
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -118,5 +110,72 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+   lol(String uid) async {
+    final lol = await Supabase.instance.client.schema('public').from('cart').select('*').eq('user_id', uid);
+    print(lol);
+     // final response = await Supabase.instance.client
+     //     .from('cart')
+     //     .select('*').eq('user_id', uid);
+     // print(response);
+
+   }
+
+  Future<void> signUp(String email, String password) async {
+    try {
+      print('object firebase ');
+      final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      print('${result.credential} User signed up');
+      print('${result.credential?.accessToken} User signed up');
+      print('${result.credential?.token} User signed up');
+      print('${result.credential?.providerId} User signed up');
+      print('${result.credential?.signInMethod} User signed up');
+      print('${result.additionalUserInfo} User signed up');
+      print('${result.additionalUserInfo?.authorizationCode} User signed up');
+      print('${result.additionalUserInfo?.isNewUser} User signed up');
+      print('${result.additionalUserInfo?.profile} User signed up');
+      print('${result.additionalUserInfo?.providerId} User signed up');
+      print('${result.additionalUserInfo?.username} User signed up');
+    } on FirebaseAuthException catch (e) {
+      print('Error: ${e.message}');
+      print('logging in');
+      signIn(email, password);
+    }
+  }
+
+  Future<void> signIn(String email, String password) async {
+    try {
+      final result = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+    Future.delayed(const Duration(seconds: 2), () {
+
+      print('${result.credential} User signed up');
+      print('${result.credential?.accessToken} User signed up');
+      print('${result.credential?.token} User signed up');
+      print('${result.credential?.providerId} User signed up');
+      print('${result.credential?.signInMethod} User signed up');
+      print('${result.additionalUserInfo} User signed up');
+      print('${result.additionalUserInfo?.authorizationCode} User signed up');
+      print('${result.additionalUserInfo?.isNewUser} User signed up');
+      print('${result.additionalUserInfo?.profile} User signed up');
+      print('${result.additionalUserInfo?.providerId} User signed up');
+      print('${result.additionalUserInfo?.username} User signed up');
+      print('User signed in');
+    });
+      final user = FirebaseAuth.instance.currentUser;
+      final token = await user?.uid;
+
+      print('token $token');
+      lol(token!);
+
+    } on FirebaseAuthException catch (e) {
+      print('Error: ${e.message}');
+    }
   }
 }
