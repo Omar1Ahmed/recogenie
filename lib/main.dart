@@ -15,12 +15,14 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  final auth = FirebaseAuth.instance;
 
-  runApp(const MyApp());
+  runApp(MyApp(auth: auth,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final FirebaseAuth auth;
+  const MyApp({super.key, required this.auth});
 
   // This widget is the root of your application.
   @override
@@ -32,13 +34,14 @@ class MyApp extends StatelessWidget {
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page', auth: auth,),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  final FirebaseAuth auth;
+  const MyHomePage({super.key, required this.title, required this.auth});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -130,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> signUp(String email, String password) async {
     try {
- await FirebaseAuth.instance.createUserWithEmailAndPassword(
+ await widget.auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -143,12 +146,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> signIn(String email, String password) async {
     try {
- await FirebaseAuth.instance.signInWithEmailAndPassword(
+ await widget.auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-  final user = FirebaseAuth.instance.currentUser;
+  final user = widget.auth.currentUser;
       final token = user?.uid;
 
 

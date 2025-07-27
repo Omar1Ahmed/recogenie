@@ -1,3 +1,4 @@
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart' show MockFirebaseAuth;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:recogenie/main.dart';
@@ -9,7 +10,8 @@ void main() {
 
   // Your test case
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  final mockAuth = MockFirebaseAuth();
+    await tester.pumpWidget(MyApp(auth: mockAuth,));
 
     expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);

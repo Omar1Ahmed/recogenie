@@ -52,9 +52,7 @@ dev_dependencies:
   build_runner: ^2.4.8
   injectable_generator: ^2.4.1
   intl_utils: ^2.8.10
-
-
-
+  firebase_auth_mocks: ^0.14.2
   flutter_lints: ^5.0.0
 
 
