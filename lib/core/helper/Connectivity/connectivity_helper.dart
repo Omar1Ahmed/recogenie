@@ -11,7 +11,7 @@ class ConnectivityHelper {
       final connectivityResult = await _connectivity.checkConnectivity();
 
       // If not connected to any network
-      if (connectivityResult == ConnectivityResult.none) {
+      if (connectivityResult[0] == ConnectivityResult.none) {
         return false;
       }
 
@@ -26,7 +26,7 @@ class ConnectivityHelper {
   /// Yields `true` if connected, `false` otherwise.
   static Stream<bool> get onConnectivityChanged {
     return _connectivity.onConnectivityChanged.map((event) {
-      return event != ConnectivityResult.none;
+      return event[0] != ConnectivityResult.none;
     });
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Responsive/UiComponents/InfoWidget.dart';
+import '../Responsive/UiComponents/info_widget.dart';
 
 
 class BuildDivider extends StatelessWidget {

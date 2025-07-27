@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../Responsive/models/DeviceInfo.dart';
+import '../../Responsive/models/device_info.dart';
 
 class CherryToastMsgs {
   static void showErrorToast(
     BuildContext context,
     String title,
     String description,
-    Deviceinfo deviceinfo,
+    DeviceInfo deviceinfo,
   ) {
     CherryToastMsgs._showAnimatedToast(
       context: context,
@@ -32,7 +32,7 @@ class CherryToastMsgs {
     BuildContext context,
     String title,
     String description,
-    Deviceinfo deviceinfo,
+    DeviceInfo deviceinfo,
   ) {
     CherryToastMsgs._showAnimatedToast(
       context: context,
@@ -57,7 +57,7 @@ class CherryToastMsgs {
     BuildContext context,
     String title,
     String description,
-    Deviceinfo deviceinfo,
+    DeviceInfo deviceinfo,
   ) {
     CherryToastMsgs._showAnimatedToast(
       context: context,
@@ -82,7 +82,7 @@ class CherryToastMsgs {
     required BuildContext context,
     required String title,
     required String description,
-    required Deviceinfo deviceinfo,
+    required DeviceInfo deviceinfo,
   }) {
     CherryToastMsgs._showAnimatedToast(
       context: context,
@@ -107,7 +107,7 @@ class CherryToastMsgs {
     required BuildContext context,
     required String title,
     required String description,
-    required Deviceinfo deviceinfo,
+    required DeviceInfo deviceinfo,
     required IconData icon,
     required Color iconColor,
     required Color iconBackground,
@@ -150,7 +150,7 @@ class CherryToastMsgs {
 class _AnimatedToastOverlay extends StatefulWidget {
   final String title;
   final String description;
-  final Deviceinfo deviceinfo;
+  final DeviceInfo deviceinfo;
   final VoidCallback onClose;
   final IconData icon;
   final Color iconColor;

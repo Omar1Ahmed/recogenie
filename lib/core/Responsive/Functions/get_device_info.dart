@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../enums/DeviceType.dart';
+import '../enums/device_type.dart';
 DeviceType getDeviceType(MediaQueryData mediaQueryData) {
   Orientation orientation = mediaQueryData.orientation;
   double deviceWidth = 0;

@@ -3,11 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(url: 'https://kkllntsdctvnypiezmfz.supabase.co', anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtrbGxudHNkY3R2bnlwaWV6bWZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM1NTYwMTQsImV4cCI6MjA2OTEzMjAxNH0.omWRI8KqG72LELRJkCu-QOr8C7QqpeN2qcUbiYk-3HI');
   await Firebase.initializeApp();
+
 
   runApp(const MyApp());
 }
@@ -112,8 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
    lol(String uid) async {
-    final lol = await Supabase.instance.client.schema('public').from('cart').select('*').eq('user_id', uid);
-    print(lol);
+ await Supabase.instance.client.schema('public').from('cart').select('*').eq('user_id', uid);
+    // print(lol);
      // final response = await Supabase.instance.client
      //     .from('cart')
      //     .select('*').eq('user_id', uid);
@@ -123,59 +125,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> signUp(String email, String password) async {
     try {
-      print('object firebase ');
-      final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+ await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      print('${result.credential} User signed up');
-      print('${result.credential?.accessToken} User signed up');
-      print('${result.credential?.token} User signed up');
-      print('${result.credential?.providerId} User signed up');
-      print('${result.credential?.signInMethod} User signed up');
-      print('${result.additionalUserInfo} User signed up');
-      print('${result.additionalUserInfo?.authorizationCode} User signed up');
-      print('${result.additionalUserInfo?.isNewUser} User signed up');
-      print('${result.additionalUserInfo?.profile} User signed up');
-      print('${result.additionalUserInfo?.providerId} User signed up');
-      print('${result.additionalUserInfo?.username} User signed up');
-    } on FirebaseAuthException catch (e) {
-      print('Error: ${e.message}');
-      print('logging in');
+
+    } on FirebaseAuthException {
+
       signIn(email, password);
     }
   }
 
   Future<void> signIn(String email, String password) async {
     try {
-      final result = await FirebaseAuth.instance.signInWithEmailAndPassword(
+ await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-    Future.delayed(const Duration(seconds: 2), () {
+  final user = FirebaseAuth.instance.currentUser;
+      final token = user?.uid;
 
-      print('${result.credential} User signed up');
-      print('${result.credential?.accessToken} User signed up');
-      print('${result.credential?.token} User signed up');
-      print('${result.credential?.providerId} User signed up');
-      print('${result.credential?.signInMethod} User signed up');
-      print('${result.additionalUserInfo} User signed up');
-      print('${result.additionalUserInfo?.authorizationCode} User signed up');
-      print('${result.additionalUserInfo?.isNewUser} User signed up');
-      print('${result.additionalUserInfo?.profile} User signed up');
-      print('${result.additionalUserInfo?.providerId} User signed up');
-      print('${result.additionalUserInfo?.username} User signed up');
-      print('User signed in');
-    });
-      final user = FirebaseAuth.instance.currentUser;
-      final token = await user?.uid;
 
-      print('token $token');
       lol(token!);
 
-    } on FirebaseAuthException catch (e) {
-      print('Error: ${e.message}');
+    } on FirebaseAuthException {
+      // print('Error: ${e.message}');
     }
   }
 }
