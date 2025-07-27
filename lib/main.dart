@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'firebase_options.dart' show DefaultFirebaseOptions;
 
 
 Future<void> main() async {
@@ -11,8 +12,7 @@ Future<void> main() async {
   await Supabase.initialize(url: 'https://kkllntsdctvnypiezmfz.supabase.co', anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtrbGxudHNkY3R2bnlwaWV6bWZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM1NTYwMTQsImV4cCI6MjA2OTEzMjAxNH0.omWRI8KqG72LELRJkCu-QOr8C7QqpeN2qcUbiYk-3HI');
   await Firebase.initializeApp(
     name: 'Recogenie',
-    options: FirebaseOptions(
-        apiKey: 'AIzaSyAbehGFZKiL_sdQc92sp0bw1t93igdkK00', appId: '1:428070339741:android:ffc0c53191ff3a4a0b4074', messagingSenderId: '428070339741', projectId: 'recogenie-18f45'),
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
 
