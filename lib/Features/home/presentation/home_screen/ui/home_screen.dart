@@ -148,12 +148,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       builder: (context, itemsList, child) {
                                         final isInCart = itemsList.any((element) => element.itemId == item.id);
 
-                                        return IconButton(onPressed: () async {
+                                        return IconButton(onPressed: ()  {
 
-                                    Result result;
+                                    Future<Result> result;
                                     if(isInCart){
 
-                                      result = await getIt<CartCubit>().removeItems(itemId: item.id);
+                                      result = getIt<CartCubit>().removeItems(itemId: item.id);
 
 
                                        if (result is FailureResult){
@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       }
                                     }else{
 
-                                    result = await getIt<CartCubit>().addItems(itemId: item.id, quantity: 1);
+                                    result =  getIt<CartCubit>().addItems(itemId: item.id, quantity: 1);
 
                                     if (result is FailureResult){
                                         CherryToastMsgs.showErrorToast(context, 'Error', 'Error Adding Item', deviceInfo);

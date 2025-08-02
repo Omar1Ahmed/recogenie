@@ -1,4 +1,4 @@
-import 'package:firebase_auth_mocks/firebase_auth_mocks.dart' show MockFirebaseAuth;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:recogenie/core/routing/app_routing.dart';

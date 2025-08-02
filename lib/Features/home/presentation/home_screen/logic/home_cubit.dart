@@ -1,12 +1,12 @@
-  import 'package:bloc/bloc.dart';
-  import 'package:injectable/injectable.dart';
-  import 'package:meta/meta.dart';
-  import 'package:recogenie/Features/home/data/model/menu_item_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
+import 'package:injectable/injectable.dart';
+import 'package:recogenie/Features/home/data/model/menu_item_model.dart';
 
-  import '../../../../../core/error/result.dart';
-  import '../../../domain/repository/home_repository.dart';
+import '../../../../../core/error/result.dart';
+import '../../../domain/repository/home_repository.dart';
 
-  part 'home_state.dart';
+part 'home_state.dart';
 
   @injectable
   class HomeCubit extends Cubit<HomeState> {

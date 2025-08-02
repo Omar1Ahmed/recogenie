@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:recogenie/Features/cart/data/model/cart_model.dart';
 
 import '../../../../../core/error/result.dart';
@@ -12,7 +12,7 @@ part 'cart_state.dart';
 
 @lazySingleton
 class CartCubit extends Cubit<CartState> {
-  CartRepository _cartRepository;
+  final CartRepository _cartRepository;
 
   CartCubit(this._cartRepository) : super(CartInitial());
 
@@ -128,7 +128,7 @@ class CartCubit extends Cubit<CartState> {
 
   }
 
-  removeItems({required String itemId}) async {
+  Future<Result> removeItems({required String itemId}) async {
     final result = await _cartRepository.removeFromCart(menuItemId: itemId);
 
     if(result is Success){
@@ -174,7 +174,7 @@ class CartCubit extends Cubit<CartState> {
     if(item.quantity == 1){
       removeCartItem(cartItems.firstWhere((e) => e.itemId == itemId));
       cartItemsDetails.removeWhere((e) => e.id == itemId);
-      if(cartItems.isEmpty || cartItems.length == 0){
+      if(cartItems.isEmpty){
         emit(CartEmpty());
         return;
       }
