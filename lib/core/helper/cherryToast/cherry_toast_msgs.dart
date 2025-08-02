@@ -7,13 +7,13 @@ class CherryToastMsgs {
     BuildContext context,
     String title,
     String description,
-    DeviceInfo deviceinfo,
+    DeviceInfo deviceInfo,
   ) {
     CherryToastMsgs._showAnimatedToast(
       context: context,
       title: title,
       description: description,
-      deviceinfo: deviceinfo,
+      deviceinfo: deviceInfo,
       icon: Icons.error_outline,
       iconColor: Colors.white,
       iconBackground: const Color(0xFFdd5b5e),

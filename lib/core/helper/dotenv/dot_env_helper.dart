@@ -17,7 +17,7 @@
 //   /// Get an integer value from the .env file.
 //   static int getInt(String key, {int defaultValue = 0}) {
 //     final value = dotenv.env[key];
-//     if (value == null || value.isEmpty) return defaultValue;
+//     if (value == null || value.isEmpty) return defaultValue; 
 //     return int.tryParse(value) ?? defaultValue;
 //   }
 // }
