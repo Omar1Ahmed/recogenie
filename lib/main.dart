@@ -20,15 +20,7 @@ Future<void> main() async {
   configureDependencies();
 
 
-  runApp(
-    // BlocProvider(
-    //   create: (context) => getIt<userMainDetailsCubit>(),
-    //   child:
-      MyApp(
-        appRouter: AppRouts(),
-      )
-    // ),
-  );
+  runApp(MyApp(appRouter: AppRouts()));
 
 }
 
@@ -36,7 +28,6 @@ class MyApp extends StatelessWidget {
   final AppRouts appRouter;
   const MyApp({super.key, required this.appRouter});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
 
